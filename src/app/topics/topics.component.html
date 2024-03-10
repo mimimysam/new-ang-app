@@ -1,0 +1,30 @@
+<h2>{{topic.name | uppercase}} Details</h2>
+<div><span>id: </span>{{topic.id}}</div>
+<div><span>name: </span>{{topic.name}}</div>
+
+<div>
+  <label for="name">Topic name: </label>
+  <input id="name" [(ngModel)]="topic.name" placeholder="name">
+  <!-- ngModel is angular's two-way data binding syntax, binds name property to text box so data flows in both directions -->
+</div>
+
+<h2>My Topics</h2>
+<ul class="topics">
+  <li *ngFor="let topic of topics">
+    <!-- ngFor is angular's repeater directive, repeats host element (<li>) for each element in a list -->
+    <button type="button" (click)="onSelect(topic)">
+      <!-- click event binding, () around click tell angular to listen for button element's click event -->
+      <span class="badge">{{topic.id}} </span>
+      <span class="name">{{topic.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedTopic">
+  <h2>{{selectedTopic.name | uppercase}} Details</h2>
+  <div>id: {{selectedTopic.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedTopic.name" placeholder="name">
+  </div>
+</div>
